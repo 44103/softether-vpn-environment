@@ -1,0 +1,15 @@
+version: 3
+
+services:
+  app:
+    image: siomiz/softethervpn
+    volumes:
+      - ./vpn_server.config:/usr/vpnserver/vpn_server.config:z
+      - ./logs/server_log:/usr/vpnserver/server_log
+      - ./logs/packet_log:/usr/vpnserver/packet_log
+      - ./logs/security_log:/usr/vpnserver/security_log
+    cap_add:
+      - NET_ADMIN
+    network_mode: host
+    privileged: true
+    restart: always
